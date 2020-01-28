@@ -1,36 +1,71 @@
-//program to perform linear search
 #include<stdio.h>
 
 int main()
 {
-    int data[20],k=0,loc=0,n,i,item;
-    printf("enter the no of element\n");
+    int bt[20],p[20],wt[20],tat[20],pr[20],i,j,n,total=0,pos,temp,avg_wt,avg_tat;
+    printf("Enter Total Number of Process:");
     scanf("%d",&n);
-    printf("enter the array element\n");
-    //creating the array
+
+    printf("\nEnter Burst Time and Priority\n");
     for(i=0;i<n;i++)
     {
-        scanf("%d",&data[i]);
+        printf("\nP[%d]\n",i+1);
+        printf("Burst Time:");
+        scanf("%d",&bt[i]);
+        printf("Priority:");
+        scanf("%d",&pr[i]);
+        p[i]=i+1;           //contains process number
     }
-    printf("enter the value to be searched\n");
-    scanf("%d",&item);
-    //comparing the elements which entered to the element in the array
-    while (k<n&&loc==0)
+
+    //sorting burst time, priority and process number in ascending order using selection sort
+    for(i=0;i<n;i++)
     {
-        if (item == data[k])
+        pos=i;
+        for(j=i+1;j<n;j++)
         {
-            loc=k;
+            if(pr[j]<pr[pos])
+                pos=j;
         }
-        k=k+1;
+
+        temp=pr[i];
+        pr[i]=pr[pos];
+        pr[pos]=temp;
+
+        temp=bt[i];
+        bt[i]=bt[pos];
+        bt[pos]=temp;
+
+        temp=p[i];
+        p[i]=p[pos];
+        p[pos]=temp;
     }
-    //in case the element is not found
-    if (loc==0)
+
+    wt[0]=0;	//waiting time for first process is zero
+
+    //calculate waiting time
+    for(i=1;i<n;i++)
     {
-        printf("item not found");
+        wt[i]=0;
+        for(j=0;j<i;j++)
+            wt[i]+=bt[j];
+
+        total+=wt[i];
     }
-    //in the case when the element is found
-    else
+
+    avg_wt=total/n;      //average waiting time
+    total=0;
+
+    printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
+    for(i=0;i<n;i++)
     {
-        printf("loc=%d",loc);
+        tat[i]=bt[i]+wt[i];     //calculate turnaround time
+        total+=tat[i];
+        printf("\nP[%d]\t\t  %d\t\t    %d\t\t\t%d",p[i],bt[i],wt[i],tat[i]);
     }
+
+    avg_tat=total/n;     //average turnaround time
+    printf("\n\nAverage Waiting Time=%d",avg_wt);
+    printf("\nAverage Turnaround Time=%d\n",avg_tat);
+
+	return 0;
 }
