@@ -1,71 +1,117 @@
-#include<stdio.h>
+/*
+*	Banker's Algorithm
+*
+*       Author 	 : Kamaljot Singh
+*
+*	Language : C
+*
+*	compiler : gcc
+*
+*/
+
+/*<--------------PREPROCESSING STATEMENTS--------------->*/
+#include <stdio.h>
+#include <conio.h>
+
+/*<--------------MAIN FUNCTION--------------->*/
 
 int main()
 {
-    int bt[20],p[20],wt[20],tat[20],pr[20],i,j,n,total=0,pos,temp,avg_wt,avg_tat;
-    printf("Enter Total Number of Process:");
-    scanf("%d",&n);
+int Max[10][10], need[10][10], alloc[10][10], avail[10], completed[10], safeSequence[10];
+int p, r, i, j, process, count;
+count = 0;
 
-    printf("\nEnter Burst Time and Priority\n");
-    for(i=0;i<n;i++)
-    {
-        printf("\nP[%d]\n",i+1);
-        printf("Burst Time:");
-        scanf("%d",&bt[i]);
-        printf("Priority:");
-        scanf("%d",&pr[i]);
-        p[i]=i+1;           //contains process number
-    }
+printf("Enter the no of processes : ");
+scanf("%d", &p);
 
-    //sorting burst time, priority and process number in ascending order using selection sort
-    for(i=0;i<n;i++)
-    {
-        pos=i;
-        for(j=i+1;j<n;j++)
-        {
-            if(pr[j]<pr[pos])
-                pos=j;
-        }
+for(i = 0; i< p; i++)
+	completed[i] = 0;
 
-        temp=pr[i];
-        pr[i]=pr[pos];
-        pr[pos]=temp;
+printf("\n\nEnter the no of resources : ");
+scanf("%d", &r);
 
-        temp=bt[i];
-        bt[i]=bt[pos];
-        bt[pos]=temp;
+printf("\n\nEnter the Max Matrix for each process : ");
+for(i = 0; i < p; i++)
+{
+	printf("\nFor process %d : ", i + 1);
+	for(j = 0; j < r; j++)
+		scanf("%d", &Max[i][j]);
+}
 
-        temp=p[i];
-        p[i]=p[pos];
-        p[pos]=temp;
-    }
+printf("\n\nEnter the allocation for each process : ");
+for(i = 0; i < p; i++)
+{
+	printf("\nFor process %d : ",i + 1);
+	for(j = 0; j < r; j++)
+		scanf("%d", &alloc[i][j]);
+}
 
-    wt[0]=0;	//waiting time for first process is zero
+printf("\n\nEnter the Available Resources : ");
+for(i = 0; i < r; i++)
+		scanf("%d", &avail[i]);
 
-    //calculate waiting time
-    for(i=1;i<n;i++)
-    {
-        wt[i]=0;
-        for(j=0;j<i;j++)
-            wt[i]+=bt[j];
 
-        total+=wt[i];
-    }
+	for(i = 0; i < p; i++)
+		for(j = 0; j < r; j++)
+			need[i][j] = Max[i][j] - alloc[i][j];
 
-    avg_wt=total/n;      //average waiting time
-    total=0;
+do
+{
+	printf("\n Max matrix:\tAllocation matrix:\n");
+	for(i = 0; i < p; i++)
+	{
+		for( j = 0; j < r; j++)
+			printf("%d  ", Max[i][j]);
+		printf("\t\t");
+		for( j = 0; j < r; j++)
+			printf("%d  ", alloc[i][j]);
+		printf("\n");
+	}
 
-    printf("\nProcess\t    Burst Time    \tWaiting Time\tTurnaround Time");
-    for(i=0;i<n;i++)
-    {
-        tat[i]=bt[i]+wt[i];     //calculate turnaround time
-        total+=tat[i];
-        printf("\nP[%d]\t\t  %d\t\t    %d\t\t\t%d",p[i],bt[i],wt[i],tat[i]);
-    }
+	process = -1;
 
-    avg_tat=total/n;     //average turnaround time
-    printf("\n\nAverage Waiting Time=%d",avg_wt);
-    printf("\nAverage Turnaround Time=%d\n",avg_tat);
+	for(i = 0; i < p; i++)
+	{
+		if(completed[i] == 0)//if not completed
+		{
+			process = i ;
+			for(j = 0; j < r; j++)
+			{
+				if(avail[j] < need[i][j])
+				{
+					process = -1;
+					break;
+				}
+			}
+		}
+		if(process != -1)
+			break;
+	}
 
-	return 0;
+	if(process != -1)
+	{
+		printf("\nProcess %d runs to completion!", process + 1);
+		safeSequence[count] = process + 1;
+		count++;
+		for(j = 0; j < r; j++)
+		{
+			avail[j] += alloc[process][j];
+			alloc[process][j] = 0;
+			Max[process][j] = 0;
+			completed[process] = 1;
+		}
+	}
+}while(count != p && process != -1);
+
+if(count == p)
+{
+	printf("\nThe system is in a safe state!!\n");
+	printf("Safe Sequence : < ");
+	for( i = 0; i < p; i++)
+			printf("%d  ", safeSequence[i]);
+	printf(">\n");
+}
+else
+	printf("\nThe system is in an unsafe state!!");
+getch();
 }
