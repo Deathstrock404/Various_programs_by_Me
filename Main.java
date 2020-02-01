@@ -1,16 +1,22 @@
-package com.company;
+package com.kamaljot;
 
 public class Main {
 
     public static void main(String[] args) {
-        //width of int = 34(4 byte)
-        int a = 5/2;
-        // width of float = 32(4 byte)
-        float b =5f/3f;
-        //width of double = 64(8 byte)
-        double c = 5d / 3d;
-        System.out.println("my a ="+a);
-        System.out.println("my b ="+b);
-        System.out.println("my c ="+c);
+        //a statement can be a line of code, variable declaration, mostly ";" is required to complete a statement
+        int myVariable = 50;
+        myVariable++;
+        myVariable--;
+        System.out.println("this is a test");
+
+        System.out.println("this is " +
+                "another " +
+                "still more");
+        //whitespace is the space required between operators or any other data
+        // so its more easier to read
+
+        //indentation
+        //its required to differentiate various code blocks
+
     }
 }
