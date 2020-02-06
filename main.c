@@ -1,43 +1,30 @@
-#include<stdio.h>
+// stack push operation
+#include <stdio.h>
+#include <stdlib.h>
 
-int main()
+void main()
 {
-    int n,bt[20],wt[20],tat[20],avwt=0,avtat=0,i,j;
-    printf("Enter total number of processes(maximum 20):");
+    int a[10],i,item,top=0,n;
+    printf("Enter the size of the stack \n");
     scanf("%d",&n);
-
-    printf("\nEnter Process Burst Time\n");
-    for(i=0;i<n;i++)
+    printf("enter the elements of the stack");
+    for(i=n;i=0;i--)
     {
-        printf("P[%d]:",i+1);
-        scanf("%d",&bt[i]);
+        scanf("%d",&a[i]);
     }
-
-    wt[0]=0;    //waiting time for first process is 0
-
-    //calculating waiting time
-    for(i=1;i<n;i++)
+    printf("Enter the elements to be put in the stack\n");
+    scanf("%d",&item);
+    if(n==10)
     {
-        wt[i]=0;
-        for(j=0;j<i;j++)
-            wt[i]+=bt[j];
+        printf("overflow");
     }
-
-    printf("\nProcess\t\tBurst Time\tWaiting Time\tTurnaround Time");
-
-    //calculating turnaround time
-    for(i=0;i<n;i++)
+    else
     {
-        tat[i]=bt[i]+wt[i];
-        avwt+=wt[i];
-        avtat+=tat[i];
-        printf("\nP[%d]\t\t%d\t\t%d\t\t%d",i+1,bt[i],wt[i],tat[i]);
+        a[n+1]=item;
+        printf("stack after insertion");
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d",a[i]);
+        }
     }
-
-    avwt/=i;
-    avtat/=i;
-    printf("\n\nAverage Waiting Time:%d",avwt);
-    printf("\nAverage Turnaround Time:%d",avtat);
-
-    return 0;
 }
