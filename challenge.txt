@@ -1,0 +1,46 @@
+Domain Name theworldsworstwebsiteever.com
+host ip address 173.231.244.236
+host location latitude 33.9214 longitude -118.413
+Domain Status: clientTransferProhibited
+Name Server: NS1.INMOTIONHOSTING.COM
+DNSSEC: unsigned
+registrar godaddy.com
+Registry Domain ID: 1472065172_DOMAIN_COM-VRSN
+
+Domain Name yahoo.com
+ip address 2001:4998:c:1023::5
+server ip 98.137.246.8
+server location latitude 37.751 longitude -97.822
+registry domain id 3643624_DOMAIN_COM-VRSN
+domain nameserver ns1.yahoo.com 68.180.131.16
+uses basic server 
+admin name Domain Admin 
+admin organisation Oath Inc.
+
+Domain Name hipsum.co 
+domain registerd to TUCOWS DOMAINS INC.
+server location laatitude 42.7348 longitude -84.6245
+domain status clientupdateprohibited
+host ns.sourcedns.com
+domain id 69.16.222.254
+server hosted by nginx 
+hosted ip address 64.91.238.28
+
+Domain Name csszengarden.com
+ip address 64.13.232.116
+server location latitude 34.0141 longitude -118.3983
+Registrar:Gandi SAS
+Domain Status:clientTransferProhibited
+Name Servers:ns1.mediatemple.net
+Name Servers : ns2.mediatemple.net
+Registry Domain ID: 96956912_DOMAIN_COM-VRSN
+
+Domain Name apple.com
+host ip address 17.172.224.47
+server location latitude 37.751 longitude -97.822
+Domain Registrar: CSC CORPORATE DOMAINS,INC.
+Registry Domain ID: 1225976_DOMAIN_COM-VRSN
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: serverDeleteProhibited https://icann.org/epp#serverDeleteProhibited
+Domain Status: serverTransferProhibited https://icann.org/epp#serverTransferProhibited
+Domain Status: serverUpdateProhibited https://icann.org/epp#serverUpdateProhibited
