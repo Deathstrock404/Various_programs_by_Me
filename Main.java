@@ -3,32 +3,35 @@ package com.kamaljot;
 public class Main {
 
     public static void main(String[] args) {
-        int highScore = calculateScore(true, 800, 5, 100);
-        System.out.println("your final score was " + highScore);
+        //list of various primitive data types
+        //int
+        //short
+        //byte
+        //long
+        //float
+        //char
+        //boolean
+        //double
+
+        String a="This is a string";
+        System.out.println(a);
 
 
-        highScore = calculateScore(true, 10000, 8, 200);
-        System.out.println(" your score was " + highScore);
+        a=a+", \u00A9 2015 and this is more";
+        System.out.println(a);
 
 
-        int totalScore = latest(true, 2500, 5460, 6969, 5847);
-        System.out.println("the total of all the above elements is " + totalScore);
-    }
+        String c="550.55";
+        c=c+"49.55";
+        System.out.println(c);
 
-    public static int calculateScore(boolean gameOver, int score, int levelComp, int bonus) {
-        if (gameOver == true) {
-            int finalScore = score + (levelComp * bonus);
-            finalScore += 2000;
-            return finalScore;
-        }
-        return (-1);
-    }
 
-    public static int latest(boolean total, int kamaljot, int vaibhav, int anshul, int ankush) {
-        if (total == true) {
-            int totalScore = ((kamaljot) + (vaibhav) + (anshul) + (ankush));
-            return (totalScore);
-        }
-        return -1;
+        String last = "10";
+        int mal=50;
+        last = last + mal;
+        System.out.println(last);
+        double dou = 525253.2555d;
+        last = last + dou;
+        System.out.println(last);
     }
 }
